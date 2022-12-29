@@ -1,0 +1,95 @@
+game_pole = [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]]
+i = 0
+j = 0
+a = 0
+print("0   1    2    3  ")
+while j < 3:
+    print(j+1, game_pole[j])
+    j += 1
+
+
+def coordinates():
+
+    x = int(input('Введите переменную Х:'))
+    y = int(input('Введите переменную Y:'))
+
+    if 0 < x < 4 and 0 < y < 4:
+        x = x - 1
+        y = y - 1
+        return x, y
+
+
+def check_Coordinates(coorginate_X, coorginate_Y):
+
+    if game_pole[coorginate_X][coorginate_Y] == 'x' or game_pole[coorginate_X][coorginate_Y] == '0':
+        return False
+    else:
+        return True
+
+
+def win_or_not():
+
+    if game_pole[1][1] != "-" and game_pole[1][1] == game_pole[0][1] and game_pole[1][1] == game_pole[2][1]:
+        print("Gameover. You win")
+        return True
+    elif game_pole[1][1] != "-" and game_pole[1][1] == game_pole[0][0] and game_pole[1][1] == game_pole[2][2]:
+        print("Gameover. You win")
+        return True
+    elif game_pole[1][1] != "-" and game_pole[1][1] == game_pole[2][0] and game_pole[1][1] == game_pole[0][2]:
+        print("Gameover. You win")
+        return True
+    elif game_pole[1][1] != "-" and game_pole[1][1] == game_pole[1][0] and game_pole[1][1] == game_pole[1][2]:
+        print("Gameover. You win")
+        return True
+    elif game_pole[0][0] != "-" and game_pole[0][0] == game_pole[1][0] and game_pole[0][0] == game_pole[2][0]:
+        print("Gameover. You win")
+        return True
+    elif game_pole[0][0] != "-" and game_pole[0][0] == game_pole[0][1] and game_pole[0][0] == game_pole[0][2]:
+        print("Gameover. You win")
+        return True
+    elif game_pole[2][2] != "-" and game_pole[2][2] == game_pole[2][1] and game_pole[2][2] == game_pole[2][0]:
+        print("Gameover. You win")
+        return True
+    elif game_pole[2][2] != "-" and game_pole[2][2] == game_pole[1][2] and game_pole[2][2] == game_pole[0][2]:
+        print("Gameover. You win")
+        return True
+    else:
+        return False
+
+
+while i < 9:
+
+    if i % 2 == 0:
+        b = "x"
+    else:
+        b = "0"
+
+
+    print("Игрок " + b + " введите координаты:")
+    x, y = coordinates()
+    checked = check_Coordinates(x, y)
+    if checked == True:
+        game_pole[x][y] = b
+        win_check = win_or_not()
+        if win_check == False:
+            print("0   1    2    3  ")
+
+        else:
+            print("0   1    2    3  ")
+            while j < 3:
+                print(j + 1, game_pole[j])
+                j += 1
+            print("Игрок " + b + " победил!")
+            break
+    else:
+        print("Это поле уже заполнено, выберите другую координатуO")
+        print("0   1    2    3  ")
+        i -= 1
+
+
+    while j < 3:
+        print(j + 1, game_pole[j])
+        j += 1
+
+    i = i + 1
+    j = 0
